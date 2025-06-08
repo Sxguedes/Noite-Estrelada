@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Para Meu Amor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('noite_estrelada.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #FFD700;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.5);
+      width: 90vw;
+      max-width: 900px;
+      border-radius: 15px;
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      color: #FFD700;
+    }
+    .left {
+      flex: 1 1 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      text-align: center;
+    }
+    .left img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      filter: drop-shadow(0 0 5px #FFD700);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .left p {
+      font-size: 1.3rem;
+      line-height: 1.4;
+      font-weight: 600;
+      color: #FFD700;
+      text-shadow: 0 0 5px #B8860B;
+      max-width: 300px;
+    }
+    .right {
+      flex: 1 1 400px;
+      position: relative;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      box-sizing: border-box;
+      color: #FFD700;
+    }
+    .right img {
+      max-width: 100%;
+      max-height: 400px;
+      border-radius: 15px;
+      object-fit: contain;
+      box-shadow: 0 0 15px 3px rgba(255, 215, 0, 0.8);
+    }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 215, 0, 0.7);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.8rem;
+      color: #8B7500;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.3s, color 0.3s;
+      box-shadow: 0 0 5px #FFD700;
+    }
+    .arrow:hover {
+      background: #FFD700;
+      color: #4B3700;
+    }
+    .arrow.left {
+      left: 10px;
+    }
+    .arrow.right {
+      right: 10px;
+    }
+    @media (max-width: 700px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .left, .right {
+        flex: none;
+        width: 90vw;
+        max-width: none;
+      }
+      .right img {
+        max-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <img src="van_gogh.jpg" alt="Boneco com coração" />
+      <p>Assim como a noite estrelada você possui estrelas em seu olhar. Você é admirável, assim como os girassóis, Van Gogh ficaria fascinado, pois você é a junção das suas belas artes...</p>
+    </div>
+    <div class="right">
+      <button class="arrow left" onclick="prevImage()">&#9664;</button>
+      <img src="foto1.jpg" alt="Foto" id="photo" />
+      <button class="arrow right" onclick="nextImage()">&#9654;</button>
+    </div>
+  </div>
+
+  <script>
+    const photos = [
+      "foto1.jpg", "foto2.jpg", "foto3.jpg",
+      "foto4.jpg", "foto5.jpg", "foto6.jpg",
+      "foto7.jpg", "foto8.jpg", "foto9.jpg"
+    ];
+    let current = 0;
+    const photoEl = document.getElementById("photo");
+
+    function updatePhoto() {
+      photoEl.src = photos[current];
+    }
+
+    function nextImage() {
+      current = (current + 1) % photos.length;
+      updatePhoto();
+    }
+
+    function prevImage() {
+      current = (current - 1 + photos.length) % photos.length;
+      updatePhoto();
+    }
+  </script>
+</body>
+</html>
